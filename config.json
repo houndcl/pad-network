@@ -1,0 +1,53 @@
+{
+  "type": "network",
+  "version": "1.0",
+  "data": "data.json",
+  "logo": {
+    "text": "houndcl",
+    "file": "logo.png",
+    "link": ""
+  },
+  "text": {
+    "title": "Puzzle & Dragon Network <br>ver. 2015.02.11",
+    "more": "ver. 2015.02.11",
+    "intro": "This network demonstrates the interplays between characters essential for completing advanced dungeons with 0-1 stone (collected from skyozora team build repository). 'Advanced dungeons' denotes all descends, rushes, challenges 6-10 and advanced materials."
+  },
+  "legend": {
+    "edgeLabel": "A team relationship between two characters",
+    "colorLabel": "Color represents an automatic clustering of characters based on the connectivity",
+    "nodeLabel": "A PAD character"
+  },
+  "features": {
+    "search": true,
+    "groupSelectorAttribute": "Modularity Class",
+    "hoverBehavior": true
+  },
+  "informationPanel": {
+    "imageAttribute": "image",
+    "groupByEdgeDirection": false
+  },
+  "sigma": {
+    "graphProperties": {
+      "minEdgeSize": 0.2,
+      "maxNodeSize": 7,
+      "maxEdgeSize": 15,
+      "minNodeSize": 1
+    },
+    "drawingProperties": {
+      "labelThreshold": 9,
+      "hoverFontStyle": "bold",
+      "defaultEdgeType": "curve",
+      "defaultLabelColor": "#000",
+      "defaultLabelHoverColor": "#fff",
+      "defaultLabelSize": 15,
+      "activeFontStyle": "bold",
+      "fontStyle": "bold",
+      "defaultHoverLabelBGColor": "#002147",
+      "defaultLabelBGColor": "#ddd"
+    },
+    "mouseProperties": {
+      "minRatio": 0.75,
+      "maxRatio": 20
+    }
+  }
+}
