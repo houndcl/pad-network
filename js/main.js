@@ -440,6 +440,7 @@ function nodeActive(a) {
 	if (config.informationPanel.groupByEdgeDirection && config.informationPanel.groupByEdgeDirection==true)	groupByDirection=true;
 	
     sigInst.neighbors = {};
+    sigInst.edgesize = {};  // add edgesize attribute to collect the widths of edges that connects to a specific node
     sigInst.detail = !0;
     var b = sigInst._core.graph.nodesIndex[a];
     showGroups(!1);
@@ -453,9 +454,13 @@ function nodeActive(a) {
             colour: b.color
         };
         
+        edgesize = b.size
+        
    	   if (a==b.source) outgoing[b.target]=n;		//SAH
 	   else if (a==b.target) incoming[b.source]=n;		//SAH
-       if (a == b.source || a == b.target) sigInst.neighbors[a == b.target ? b.source : b.target] = n;
+       if (a == b.source || a == b.target) {
+           sigInst.neighbors[a == b.target ? b.source : b.target] = n;
+           sigInst.edgesize[a == b.target ? b.source : b.target] = edgesize; }
        b.hidden = !1, b.attr.color = "rgba(0, 0, 0, 1)";
     });
     var f = [];
@@ -497,9 +502,12 @@ function nodeActive(a) {
     e.sort(function (a, b) {
         var c = a.group.toLowerCase(),
             d = b.group.toLowerCase(),
-            e = a.name.toLowerCase(),
-            f = b.name.toLowerCase();
-        return c != d ? c < d ? -1 : c > d ? 1 : 0 : e < f ? -1 : e > f ? 1 : 0
+            //e = a.name.toLowerCase(),
+            //f = b.name.toLowerCase();
+            e = a.edgesize,   // sort by the edgesize
+            f = b.edgesize;   // sort by the edgesize
+        //return c != d ? c < d ? -1 : c > d ? 1 : 0 : e < f ? -1 : e > f ? 1 : 0
+        return c != d ? c < d ? -1 : c > d ? 1 : 0 : e < f ? 1 : e > f ? -1 : 0    // reverse sort
     });
     d = "";
 		for (g in e) {
@@ -508,7 +516,7 @@ function nodeActive(a) {
 				d = c.group;
 				f.push('<li class="cf" rel="' + c.color + '"><div class=""></div><div class="">' + d + "</div></li>");
 			}*/
-			f.push('<li class="membership"><a href="#' + c.name + '" onmouseover="sigInst._core.plotter.drawHoverNode(sigInst._core.graph.nodesIndex[\'' + c.id + '\'])\" onclick=\"nodeActive(\'' + c.id + '\')" onmouseout="sigInst.refresh()">' + c.name + "</a></li>");
+			f.push('<li class="membership"><a href="#' + c.name + '" onmouseover="sigInst._core.plotter.drawHoverNode(sigInst._core.graph.nodesIndex[\'' + c.id + '\'])\" onclick=\"nodeActive(\'' + c.id + '\')" onmouseout="sigInst.refresh()">' + c.name + "<strong>(" + sigInst.edgesize[c.id] + ")</strong>" + "</a></li>");
 		}
 		return f;
 	}
