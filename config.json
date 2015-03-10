@@ -20,7 +20,7 @@
   "features": {
     "search": true,
     "groupSelectorAttribute": "Modularity Class",
-    "hoverBehavior": true
+    "hoverBehavior": "dim"
   },
   "informationPanel": {
     "imageAttribute": "image",
