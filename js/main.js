@@ -496,7 +496,8 @@ function nodeActive(a) {
             id: g,
             name: d.label,
             group: (c[g].name)? c[g].name:"",
-            colour: c[g].colour
+            colour: c[g].colour,
+            edgesize: sigInst.edgesize[g]
         })
     }
     e.sort(function (a, b) {
